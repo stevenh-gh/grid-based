@@ -1,5 +1,4 @@
-@import "reset.css";
-@import "dist/grid.css";
 * {
   outline: 1px solid #f00;
+  box-sizing: border-box;
 }
