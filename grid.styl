@@ -1,9 +1,29 @@
+// breakpoints:
+// sm: 576px
+// md: 768px
+// lg: 992px
+// xl: 1200px
+breakpoints = {
+	sm: { sz: 576px, col: 4 },
+	md: { sz: 768px, col: 8 },
+	lg: { sz: 992px, col: 12 },
+	xl: { sz: 1200px, col: 12 }
+}
+
 .grid
 	display grid
-	grid-template-columns repeat(12, 1fr)
 	grid-column-gap 20px
 	margin 0 20px
 
-	for i in 1 .. 12
-		&__{i}-col
-			grid-column span i
+media-query(sz, col)
+	@media screen and (min-width sz)
+		.grid
+			grid-template-columns repeat(col, 1fr)
+
+			for i in 1 .. col
+				// todo: add sz prefix to classname
+				&__colspan{i}
+					grid-column span i
+
+for bp, val in breakpoints
+	media-query val.sz, val.col
