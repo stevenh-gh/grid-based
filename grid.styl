@@ -1,8 +1,3 @@
-// breakpoints:
-// sm: 576px
-// md: 768px
-// lg: 992px
-// xl: 1200px
 breakpoints = {
 	sm: { sz: 576px, col: 4 },
 	md: { sz: 768px, col: 8 },
@@ -12,18 +7,18 @@ breakpoints = {
 
 .grid
 	display grid
+	// todo: maybe custom gutter and margins?
 	grid-column-gap 20px
 	margin 0 20px
 
-media-query(sz, col)
+media(bp, sz, col)
 	@media screen and (min-width sz)
 		.grid
 			grid-template-columns repeat(col, 1fr)
 
 			for i in 1 .. col
-				// todo: add sz prefix to classname
-				&__colspan{i}
+				.{bp}colspan{i}
 					grid-column span i
 
 for bp, val in breakpoints
-	media-query val.sz, val.col
+	media(bp, val.sz, val.col)
