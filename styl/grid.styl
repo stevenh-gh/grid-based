@@ -4,21 +4,29 @@ breakpoints = {
 	lg: { sz: 992px, col: 12 },
 	xl: { sz: 1200px, col: 12 }
 }
-
-.grid
-	display grid
-	// todo: maybe custom gutter and margins?
-	grid-column-gap 20px
-	margin 0 20px
+gutter = 20px
+margin = 0 20px
 
 media(bp, sz, col)
 	@media screen and (min-width sz)
-		.grid
+		.row
 			grid-template-columns repeat(col, 1fr)
 
 			for i in 1 .. col
-				.{bp}colspan{i}
+				.col-{bp}-{i}
 					grid-column span i
 
-for bp, val in breakpoints
-	media bp, val.sz, val.col
+.container
+	width 100vw
+
+	.row
+		display grid
+		// todo: maybe custom gutter and margins?
+		grid-column-gap gutter
+		margin margin
+
+		.col
+			grid-column span 1
+
+	for bp, val in breakpoints
+		media bp, val.sz, val.col
