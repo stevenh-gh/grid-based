@@ -13,24 +13,9 @@ font-size(px)
 body
 	font-family "roboto", sans-serif
 
-for i in 1 .. 6
-	h{i}
+sz = 36, 30, 24, 16, 14, 12
+
+for px, i in sz
+	h{i + 1}
 		font-weight 600
-
-h1
-	font-size(36)
-
-h2
-	font-size(30)
-
-h3
-	font-size(24)
-
-h4
-	font-size(16)
-
-h5
-	font-size(14)
-
-h6
-	font-size(12)
+		font-size(px)
